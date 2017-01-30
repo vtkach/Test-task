@@ -1,0 +1,16 @@
+<div class="flex-container main-container">
+    <aside>
+        <nav>
+            <ul class="sidebar">
+                <% _.each(data, function (elem, index) { %>
+                    <li><a href='#directory/<%= index.toLowerCase() %>'><%= index %></a></li>
+                <% }); %>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <% _.each(data, function (elem, index) { %>
+            <section id='directory/<%= index.toLowerCase() %>'></section>
+        <% }); %>
+    </main>
+</div>

@@ -1,0 +1,102 @@
+:root {
+    --border: 1px solid #ADD8E6;
+    --lightblue: #ADD8E6;
+    --active: #0086B3;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.main-container {
+    border: var(--border);
+    width: 960px;
+}
+
+.blue-border {
+    border: var(--border);
+}
+
+.sidebar li {
+    border-bottom: var(--border);
+    border-right: var(--border);
+}
+
+label[for] {
+    user-select: none;
+    cursor: pointer;
+}
+
+.flex-container {
+    display: flex;
+}
+
+li {
+    overflow: hidden;
+    cursor: pointer;
+    padding: 5px;
+}
+.active {
+    background: var(--active);
+}
+
+.active > * {
+    color: #fff;
+}
+.sidebar li:hover,
+.shift li:hover,
+.sidebar .visible,
+header {
+    background-color: var(--lightblue);
+}
+
+.aligning {
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.shift li {
+    border-bottom: var(--border);
+    border-right: var(--border);
+    padding: 5px 10px;
+}
+
+.caret {
+    transition: transform .3s;
+    transform: rotate(0deg);
+    margin: 0 10px 4px 0;
+    font-size: 20px;
+}
+
+.caret + h2 {
+    padding: 5px;
+}
+
+input ~ p {
+    transition: height .3s, opacity .3s;
+    opacity: 0;
+    height: 0;
+}
+
+input:checked + ul,
+input:checked ~ p,
+section[id]:target,
+.main-container .visible {
+    display: block;
+}
+
+section[id],
+input + ul,
+input {
+    display: none;
+}
+
+input:checked ~ p {
+    opacity: 1;
+    height: 4rem;
+}
+
+input:checked + header > .caret {
+    transform: rotate(180deg);
+}
