@@ -5,17 +5,9 @@
         _mainView: null,
 
         routes: {
-            'directory/:goods/:tab': 'renderAnotherGoods',
+            'directory/:goods/:tab': 'renderGoods',
             'directory/:goods': 'renderGoods',
             '': 'renderByDefault'
-        },
-
-        renderAnotherGoods: function (subRoute, tab) {
-            if (this._mainView) {
-                this._mainView.renderSubView(subRoute, tab);
-            } else {
-                this._mainView = new app.views.MainView(subRoute, tab);
-            }
         },
 
         renderGoods: function (subRoute, tab) {
@@ -29,6 +21,7 @@
         renderByDefault: function () {
             this._mainView = new app.views.MainView();
         }
+
     });
 
 } (window.app, $, Backbone));

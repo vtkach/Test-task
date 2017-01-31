@@ -1,19 +1,19 @@
 {
   "data": {
     "Products": {
-      "tabs": ["General", "Adresses", "Orders"]
+      "tabs": ["General", "Adress", "Order"]
     },
 
     "Customers": {
-      "tabs": ["General", "Adresses", "Orders"]
+      "tabs": ["General", "Adress", "Order"]
     },
 
     "Orders": {
-      "tabs": ["General", "Adresses", "Orders"]
+      "tabs": ["General", "Adress", "Order"]
     },
 
     "News": {
-      "tabs": ["General", "Adresses", "Orders"]
+      "tabs": ["General", "Adress", "Order"]
     }
   }
 }

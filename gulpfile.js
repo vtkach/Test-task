@@ -1,10 +1,10 @@
 var gulp = require('gulp');
 var webserver = require('gulp-webserver');
-var template = require('gulp-template-compile');
 var tojst = require('gulp-tojst');
 var path = require('path');
 var minify = require('gulp-uglify');
 var concat = require('gulp-concat');
+var cssmin = require('gulp-cssmin');
 
 gulp.task('jst', function () {
     gulp.src('./assets/templates/*.html')
@@ -28,8 +28,27 @@ gulp.task('webserver', function () {
         }));
 });
 
+gulp.task('css-min', function () {
+    gulp.src([
+        'assets/css/reset.css',
+        'assets/css/styles.css'
+    ]).pipe(concat('builded.css'))
+    .pipe(cssmin())
+        .pipe(gulp.dest('build'));
+});
 
-gulp.task('min', ['jst'], function () {
+gulp.task('vendor', function () {
+    gulp.src([
+        'vendors/js/jquery.js',
+        'vendors/js/underscore.js',
+        'vendors/js/backbone.js'
+    ])
+        .pipe(concat('vendors.js'))
+        .pipe(minify())
+        .pipe(gulp.dest('build'));
+});
+
+gulp.task('default', ['css-min', 'vendor', 'jst'], function () {
     gulp.src([
         'assets/js/init-application.js',
         'build/jst.js',
@@ -40,7 +59,7 @@ gulp.task('min', ['jst'], function () {
         'assets/js/routers/Router.js',
         'assets/js/run.js'
     ])
-        .pipe(concat('builded.js'))
+        .pipe(concat('client.js'))
         .pipe(minify())
         .pipe(gulp.dest('build'));
 });

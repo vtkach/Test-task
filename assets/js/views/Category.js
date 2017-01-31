@@ -2,8 +2,6 @@
 
     app.views.CategoryView = B.View.extend({
 
-        tabViews: [],
-
         events: {
             'change [type=checkbox]': 'toggleDescription',
             'change [type=radio]': 'changeActive'
@@ -27,24 +25,10 @@
             });
 
             this.$('.main-content').append(view.el);
-
-            this.tabViews.push(view);
         },
 
         toggleDescription: function (event) {
-            var topics = localStorage.getItem('choosen-topics'),
-                splitted = topics && topics.split(', ') || [],
-                target = event.target,
-                selector = '#' + target.id;
-
-            if (target.checked) {
-                splitted.push(selector);
-                localStorage.setItem('choosen-topics', topics ? splitted.join(', ') : selector);
-            } else {
-                if (topics) {
-                    localStorage.setItem('choosen-topics', _.without(splitted, selector).join(', '));
-                }
-            }
+            Backbone.trigger('save-to-storage', event.target.checked, event.target.id);
         },
 
         renderTabs: function (opts) {
@@ -74,4 +58,4 @@
 
     });
 
-}(window.app, $, Backbone));
+} (window.app, $, Backbone));
