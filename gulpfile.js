@@ -48,7 +48,7 @@ gulp.task('vendor', function () {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('default', ['css-min', 'vendor', 'jst'], function () {
+gulp.task('default', ['css-min', 'vendor', 'jst', 'webserver'], function () {
     gulp.src([
         'assets/js/init-application.js',
         'build/jst.js',
