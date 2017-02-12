@@ -2,8 +2,6 @@
 
     app.views.MainView = B.View.extend({
 
-        _subView: null,
-
         el: 'body',
 
         events: {
@@ -36,7 +34,7 @@
         },
 
         renderSubView: function (subRoute, tab) {
-            this._subView = new app.views.CategoryView({
+            new app.views.CategoryView({
                 el: this.$('section[id^="directory/' + subRoute + '"]'),
                 data: this.model.get('data'),
                 category: subRoute,

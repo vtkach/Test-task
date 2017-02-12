@@ -28,7 +28,7 @@
         },
 
         toggleDescription: function (event) {
-            Backbone.trigger('save-to-storage', event.target.checked, event.target.id);
+            B.trigger('save-to-storage', event.target.checked, event.target.id);
         },
 
         renderTabs: function (opts) {
@@ -45,13 +45,18 @@
             this.$('[id^="directory/' + category + tabName).next().addClass('visible');
         },
 
-        render: function (opts) {
-            var selectedTab = opts.tab ? '/' + opts.tab + '"]' : '"]:first',
-                tabInfo = opts.data[this.capitalize(opts.category)];
+        buildSelector: function (tab) {
+            return (tab) ? '/' + tab + '"]' : '"]:first';
+        },
 
-            this.$el.html(app.JST.category(_.extend(tabInfo, { category: opts.category }))).addClass('visible');
+        render: function (opts) {
+            var selectedTab = this.buildSelector(opts.tab),
+                category = opts.category,
+                tabInfo = opts.data[this.capitalize(category)];
+
+            this.$el.html(app.JST.category(_.extend(tabInfo, { category: category }))).addClass('visible');
             this.renderTabs(opts);
-            this.setActiveTab(opts.category, selectedTab);
+            this.setActiveTab(category, selectedTab);
 
             return this;
         }

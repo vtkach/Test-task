@@ -5,20 +5,23 @@
         url: 'assets/data.json',
 
         initialize: function () {
-            this.listenTo(Backbone, 'save-to-storage', this.savePreferencies);
+            this.listenTo(B, 'save-to-storage', this.savePreferencies);
         },
 
         savePreferencies: function (isChecked, id) {
             var topics = localStorage.getItem('choosen-topics'),
                 splitted = topics && topics.split(', ') || [],
-                selector = '#' + id;
+                selector = '#' + id,
+                result;
 
             if (isChecked) {
                 splitted.push(selector);
-                localStorage.setItem('choosen-topics', splitted.join(', '));
+                result = splitted.join(', ');
             } else {
-                localStorage.setItem('choosen-topics', _.without(splitted, selector).join(', '));
+                result = _.without(splitted, selector).join(', ');
             }
+
+            localStorage.setItem('choosen-topics', result);
         }
 
     });

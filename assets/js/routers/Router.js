@@ -1,4 +1,4 @@
-;(function (app, $, B) {
+;(function (app, B) {
 
     app.routers.Router = B.Router.extend({
 
@@ -19,9 +19,9 @@
         },
 
         renderByDefault: function () {
-            this._mainView = new app.views.MainView();
+            this._mainView = new app.views.MainView('products', 'general');
         }
 
     });
 
-} (window.app, $, Backbone));
+} (window.app, Backbone));
